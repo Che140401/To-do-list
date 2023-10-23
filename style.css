@@ -62,6 +62,8 @@
     position: absolute;
     left: 10px;
     top: 20px;
+    opacity: 0.5;
+    transition: all ease 1s;
 }
 
 .add-btn{
@@ -72,7 +74,7 @@
     padding: 10px;
     position: absolute;
     right: 100px;
-    top: 100px;
+    top: 110px;
     padding-inline: 40px;
     font-weight: 700;
     font-size: 15px;
@@ -98,6 +100,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
   }
   .list li{
     position: relative;
@@ -105,8 +108,9 @@
     padding-left: 40px;
     margin-top: 10px;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: 0.4px;
+    text-transform: uppercase;
   }
 
 .list input{
@@ -168,4 +172,27 @@
   .fa-pen-to-square{
     position: absolute;
     right: 24px;
+  }
+
+  @media screen and (max-width: 1300px) {
+    .input-task .add-task{
+      right: 0;
+    top: 0;
+    border: none;
+    border-left: 1px solid #000;
+    border-radius: 0px;
+    padding-block: 13px;
+    transition: ease 1s all;
+    padding-inline: 15px;
+    font-size: 14px;
+    }
+    .input-task .add-task:hover{
+      background: #c4f3c47a;
+    }
+    .input-task .btns{
+      flex-direction: column;
+    }
+    .input-task .btns .clear-task-btn, .clear-completed-tasks-btn{
+      width: 100%;
+    }
   }

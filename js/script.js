@@ -10,14 +10,24 @@ let currentlyEditedItem = null;
 let add_task = document.querySelector('.add-task');
 let todo_icon = document.querySelector('.todo-icon');
 let todo_form = document.querySelector('.todo-form');
+let trash = document.getElementsByClassName('.trash');
+
+
 
 
 input.addEventListener('click',function(){
     todo_icon.style.opacity=1;
 })
 
+// Pushing data to arrays
+let list_items = [];
+
+
+
 // Added task
 function Add() {
+    list_items.push(input.value);
+    console.log(list_items)
     if (input.value == "") {
         alert("Please enter a value");
     } else {
@@ -31,7 +41,40 @@ function Add() {
             input_data.value = taskData;
         });
         data_append.querySelector('.trash').addEventListener("click", function () {
-            data_append.remove();
+            if(confirm("Are you sure you want to delete task")){
+                data_append.remove();
+
+                // Find the closest <li> element to the clicked trash icon
+
+                let closestLi = this.closest('li');
+
+                for(let i=0;i<=list_items.length-1;i++){
+                    if(list_items[i] == closestLi.textContent){
+                        list_items.splice(i,1)
+                        console.log(list_items)
+                    }
+                    else{
+                        console.log("false")
+                    }
+                }
+                Toastify({
+                    text: "Task Deleted",
+                    duration: 3000,
+                    destination: "https://github.com/apvarun/toastify-js",
+                    newWindow: true,
+                    close: true,
+                    gravity: "bottom", // `top` or `bottom`
+                    position: "left", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                      background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                    onClick: function(){} // Callback after click
+                  }).showToast();
+            }
+            else{
+                return;
+            }
         });
     }
 }

@@ -79,12 +79,13 @@ function Add() {
 // clear all task
 clear_btn.addEventListener('click', function () {
     if (list.children.length !== 0) {
-        // Display a confirmation dialog
-        showConfirmDialog("Are you sure you want to clear all tasks?", function (confirmed) {
-            if (confirmed) {
-                list.innerHTML = '';
-            }
-        });
+        // Use the native confirm dialog
+        const userConfirmed = window.confirm("Are you sure you want to clear all tasks?");
+
+        // Check user confirmation
+        if (userConfirmed) {
+            list.innerHTML = '';
+        }
     } else {
         alert("No task is pending");
     }
@@ -95,14 +96,15 @@ selected_remove.addEventListener('click', function () {
     let completedTasks = list.querySelectorAll('input[type="checkbox"]:checked');
 
     if (completedTasks.length > 0) {
-        // Display a confirmation dialog
-        showConfirmDialog("Are you sure you want to clear completed tasks?", function (confirmed) {
-            if (confirmed) {
-                completedTasks.forEach(function (checkbox) {
-                    checkbox.closest('li').remove();
-                });
-            }
-        });
+        // Use the native confirm dialog
+        const userConfirmed = window.confirm("Are you sure you want to clear completed tasks?");
+
+        // Check user confirmation
+        if (userConfirmed) {
+            completedTasks.forEach(function (checkbox) {
+                checkbox.closest('li').remove();
+            });
+        }
     } else {
         alert("No completed tasks to clear.");
     }
@@ -159,33 +161,6 @@ save_btn.addEventListener('click', function () {
         }
     }
 });
-
-// Function to display a confirmation dialog
-function showConfirmDialog(message, callback) {
-    // Set the confirmation message
-    document.getElementById('confirmMessage').innerText = message;
-
-    // Show the modal
-    $('#confirmModal').modal('show');
-
-    // Handle 'Yes' button click
-    document.getElementById('confirmYes').addEventListener('click', function () {
-        // Hide the modal
-        $('#confirmModal').modal('hide');
-
-        // Call the callback function with true (confirmed)
-        callback(true);
-    });
-
-    // Handle modal close (including 'No' button click)
-    $('#confirmModal').on('hidden.bs.modal', function () {
-        // Remove the event listener to avoid multiple executions
-        document.getElementById('confirmYes').removeEventListener('click', callback);
-
-        // Call the callback function with false (not confirmed)
-        callback(false);
-    });
-}
 
 if ($(window).width() < 1300) {
     let addTaskButton = document.querySelector('.add-task');

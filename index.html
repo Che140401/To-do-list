@@ -63,12 +63,12 @@
   </div>
             </div>
         </div>
-        <div class="modal" id="confirmModal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                        <button type="button" id="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -76,12 +76,32 @@
                         <p id="confirmMessage"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">No</button>
                         <button type="button" class="btn btn-primary" id="confirmYes">Yes</button>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="modal" id="confirmationModal">
+            <h2>Confirmation</h2>
+            <p>Are you sure you want to perform this action?</p>
+            <div class="modal-buttons">
+                <button id="confirmBtn">Confirm</button>
+                <button id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+
+        <div class="modal" id="alertModal">
+            <h2>Alert</h2>
+            <p>This is an alert message.</p>
+            <div class="modal-buttons">
+                <button id="okBtn">OK</button>
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay"></div>
+
     </section>
 </body>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
